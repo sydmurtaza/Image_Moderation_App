@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Moderation API</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                        <path d="M6.5 2H20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6.5a2 2 0 0 1-1.055-.277L1.5 14v-4l3.945-2.723A2 2 0 0 1 6.5 7c.581 0 1.077.337 1.324.806"></path>
+                        <path d="M10 14.5A3.5 3.5 0 0 0 13.5 11H18a3.5 3.5 0 0 0 0-7h-2.5"></path>
+                        <path d="M18 22H4a2 2 0 0 1-2-2V8"></path>
+                    </svg>
+                    <h1>Image Moderation API</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#" class="active" data-section="moderation">Moderation</a></li>
+                        <li><a href="#" data-section="tokens">Tokens</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <!-- Authentication -->
+                <div class="auth-container" id="auth-container">
+                    <div class="card">
+                        <h2>Authentication Required</h2>
+                        <p>Enter your API token to access the Image Moderation API.</p>
+                        <div class="form-group">
+                            <label for="token-input">API Token</label>
+                            <input type="text" id="token-input" placeholder="Enter your API token">
+                        </div>
+                        <button id="auth-button" class="button">Authenticate</button>
+                    </div>
+                </div>
+
+                <!-- Moderation Section -->
+                <section class="section active" id="moderation-section">
+                    <div class="card">
+                        <h2>Image Moderation</h2>
+                        <p>Upload an image to analyze it for potentially harmful content.</p>
+                        
+                        <div class="upload-container" id="upload-container">
+                            <div class="upload-area" id="upload-area">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                <p>Drag & drop an image here, or <span class="upload-link">browse</span></p>
+                                <input type="file" id="file-input" accept="image/*" class="file-input">
+                            </div>
+                            
+                            <div class="file-preview" id="file-preview">
+                                <div class="preview-image-container">
+                                    <img id="preview-image" src="#" alt="Preview">
+                                </div>
+                                <div class="file-info">
+                                    <p id="file-name">filename.jpg</p>
+                                    <p id="file-size">1.2 MB</p>
+                                </div>
+                                <button id="remove-file" class="button button-small">Remove</button>
+                            </div>
+                            
+                            <button id="upload-button" class="button">Analyze Image</button>
+                        </div>
+                        
+                        <div class="loader" id="loader">
+                            <div class="spinner"></div>
+                            <p>Analyzing image...</p>
+                        </div>
+                        
+                        <div class="results" id="results">
+                            <h3>Analysis Results</h3>
+                            <div class="result-status" id="result-status">
+                                <span class="status-icon"></span>
+                                <span class="status-text">Content appears safe</span>
+                            </div>
+                            <div class="categories" id="categories-container">
+                                <!-- Categories will be added dynamically -->
+                            </div>
+                            <div class="analysis-time">
+                                <p>Analysis completed in <span id="analysis-time">0.5s</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Token Management Section -->
+                <section class="section" id="tokens-section">
+                    <div class="card">
+                        <h2>Token Management</h2>
+                        <p>Create, view, and delete API tokens.</p>
+                        
+                        <div class="admin-required" id="admin-notice">
+                            <p>Admin privileges required to manage tokens.</p>
+                        </div>
+                        
+                        <div class="token-management" id="token-management">
+                            <div class="action-bar">
+                                <button id="create-token" class="button">Create New Token</button>
+                                <div class="admin-toggle">
+                                    <label class="toggle">
+                                        <input type="checkbox" id="admin-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span>Admin Token</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tokens-list" id="tokens-list">
+                                <div class="table-header">
+                                    <div class="col-token">Token</div>
+                                    <div class="col-type">Type</div>
+                                    <div class="col-created">Created</div>
+                                    <div class="col-actions">Actions</div>
+                                </div>
+                                <div class="tokens-container" id="tokens-container">
+                                    <!-- Tokens will be added dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Image Moderation API. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal for token creation confirmation -->
+    <div class="modal" id="token-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Token Created</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Your new API token has been created. Make sure to copy it now as it won't be shown again.</p>
+                <div class="token-display">
+                    <code id="new-token">API_TOKEN_HERE</code>
+                    <button id="copy-token" class="button button-small">Copy</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="close-token-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/app.js" type="module"></script>
+</body>
+</html>
