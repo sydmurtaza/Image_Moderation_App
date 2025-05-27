@@ -1,3 +1,4 @@
+
 # Image Moderation API
 
 A secure FastAPI-based service for detecting and blocking harmful imagery.
@@ -74,3 +75,4 @@ This project follows a Git workflow with feature branches and code reviews:
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
