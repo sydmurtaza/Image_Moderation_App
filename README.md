@@ -59,9 +59,9 @@ All API endpoints require a valid bearer token in the `Authorization: Bearer <to
 
 ## Docker Services
 
-- `mongodb`: MongoDB database
-- `backend`: FastAPI backend service
-- `frontend`: Frontend web interface
+- `mongodb`: MongoDB database.
+- `backend`: FastAPI backend service.
+- `frontend`: Frontend web interface.
 
 ## Development
 
