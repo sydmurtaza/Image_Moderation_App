@@ -72,7 +72,4 @@ This project follows a Git workflow with feature branches and code reviews:
 3. Open a Pull Request for review
 4. Merge into `main` after approval
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
